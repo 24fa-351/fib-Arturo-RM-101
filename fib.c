@@ -17,7 +17,7 @@ int iterateFunc(int x) {
    return saveNum;
 }
 
-// Needs fixing
+
 int recursiveFunc(int N, int saveNum, int currNum, int prevNum) {
    if(N == 0) {
       return saveNum;
@@ -30,18 +30,33 @@ int recursiveFunc(int N, int saveNum, int currNum, int prevNum) {
 }
 
 int main(int argc, char* argv[]) {
+   FILE* file;
+   int textNum;
+
+   file = fopen(argv[3], "r");
+   fscanf(file, "%d", &textNum);
+
+   if(argv[3] == NULL) {
+      printf("No such file has been found\n");
+      return 1;
+   }
+
    int prevNum = 0;
    int saveNum = 0;
    int currNum = 1;
+
+   int N = atoi(argv[1]) + textNum;
+   N -= 1;
+
    if(strcmp(argv[2], "i") == 0) {
-      int N = atoi(argv[1]);
+      //int N = atoi(argv[1]);
       if(N == 0){
          printf("%d\n", iterateFunc(N));
       } else {
          printf("%d\n", iterateFunc(N));
       }  
    } else if(strcmp(argv[2], "r") == 0) {
-      int N = atoi(argv[1]);
+      //int N = atoi(argv[1]);
       if(N == 0) {
          printf("%d\n", N);
       } else {
