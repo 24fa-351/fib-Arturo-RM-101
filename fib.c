@@ -4,22 +4,21 @@
 
 // Iterates the function by N placed into int X
 // Variables are set to keep track of current and previous numbers to allow Fibonacci
-int iterateFunc(int N) {
+int iterateFunc(int x) {
    int prevNum = 0;
    int saveNum = 0;
    int currNum = 1;
-   
-   if(N == 0) {
-      return 0;
+
+   if(x == 0) {
+      return prevNum;
    }
-   for(int i = 2; i <= N; i++) {
+   for(int i = 2; i <= x; i++) {
       saveNum = prevNum + currNum;
       prevNum = currNum;
       currNum = saveNum;
    }
    return saveNum;
 }
-
 
 // Recursive function that has N placed into X along with other variables mentioned in main respectively
 // Variables prevNum, saveNum, and currNum are used the same as iterative
@@ -29,10 +28,10 @@ int recursiveFunc(int N) {
    } else {
       return recursiveFunc(N-1) + recursiveFunc(N-2);
    }
+}
 
-// Main paramaters are utilized to grab command line string to be used through this part   
+// Main paramaters are utilized to grab command line string to be used through this part
 int main(int argc, char* argv[]) {
-   
    // FILE is used and as a pointer to indicate the usage of the data stored with file
    FILE* file;
    // TextNum is used in order to store the number kept inside the specified text file
@@ -44,7 +43,6 @@ int main(int argc, char* argv[]) {
    // Fscanf is used to go through the data in file which is then stored into textNum
    fscanf(file, "%d", &textNum);
 
-   // Checks to see if the file exists and returns no file exist if it's not there
    if(argv[3] == NULL) {
       printf("No such file has been found\n");
       return 1;
@@ -60,6 +58,6 @@ int main(int argc, char* argv[]) {
    } else if(strcmp(argv[2], "r") == 0) {
       printf("%d\n", recursiveFunc(N));
    }
-   }
    return 0;
 }
+
